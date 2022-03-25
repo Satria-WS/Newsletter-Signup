@@ -19,13 +19,14 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
+      <!-- action method, that is the location we're going to send our post request, which is going to be the home route -->
+    <form action="/" class="form-signin" method="post">
       <img class="mb-1" src="image/monkey smoke2.jpg" alt="" width="180" height="180">
       <h1 class="h4 mb-2 font-weight-normal font-weight-bold">Sign Up to My Newsletter!</h1>
       
-      <input type="text" class="form-control top" placeholder="First Name" required autofocus>
-      <input type="text" class="form-control middle" placeholder="Last Name" required >
-      <input type="email" class="form-control bottom" placeholder="Email" required>
+      <input type="text" name="fName" class="form-control top" placeholder="First Name" required autofocus>
+      <input type="text" name="lName" class="form-control middle" placeholder="Last Name" required >
+      <input type="email" name="email" class="form-control bottom" placeholder="Email" required>
 
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Me Up!</button>
       <p class="mt-5 mb-3 text-muted">&copy; The App Free Smoking!</p>
