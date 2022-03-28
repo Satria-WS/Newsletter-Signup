@@ -8,19 +8,12 @@ const mailchimp = require("@mailchimp/mailchimp_marketing");
 
 const app = express();
 
-
-
 //create body-parser, for grab the data from the sign up form
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 //create path static folder , for keep css or other files
 app.use(express.static("public"));
-//listening port 3000
-app.listen(process.env.PORT||3000, () => {
-  console.log("server is running on port 3000");
-});
-
 
 //create home route 
 app.get("/", (req, res) => {
@@ -29,9 +22,9 @@ app.get("/", (req, res) => {
 
 // Setting up MailChimp
 mailchimp.setConfig({
-    apiKey: "737ee8835f3f138146613adf9c5a94e0-us14",
-    server: "us14"
-})
+  apiKey: "4cf62c58223f7bd40723805b5838ff62-us14",
+  server: "us14",
+});
 
 //create post route
 app.post("/", (req, res) => {
@@ -57,6 +50,8 @@ app.post("/", (req, res) => {
                 FNAME: subscribingUser.firstName,
                 LNAME: subscribingUser.lastName,
             }
+
+
         });
 
         res, sendFile(__dirname + "/success.html");
@@ -69,12 +64,22 @@ app.post("/", (req, res) => {
     callPing().catch(e => res.sendFile(__dirname + "/failure.html"));
 });
 
+//listening Both of Heroku and local port.
+app.listen(process.env.PORT||3000, () => {
+  console.log("server is running on port 3000");
+});
 
+/* 
+//listening HEROKU PORT
+app.listen(process.env.PORT, ()=> {
+    console.log("Server is running on port HEROKU");
+})
 
-
-
-
-
+//listening port 3000
+app.listen(3000 , ()=> {
+    console.log("local server is running on port 3000")
+})
+ */
 
 
 
